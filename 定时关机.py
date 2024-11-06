@@ -12,8 +12,11 @@ def getdatetime():
 menu = ['', ['显示窗口', '隐藏窗口',  '---',  '退出']]
 title = '定时关机程序'
 
+hour = 22
+min = 40
+
 layout = [
-    [sg.T('到'),sg.Input('22',key="in_hour",size=(5,10)),sg.T('时'),sg.Input('30',key="in_min",size=(5,10)),sg.T('分关机'),],
+    [sg.T('到'),sg.Input(str(hour),key="in_hour",size=(5,10)),sg.T('时'),sg.Input(str(min),key="in_min",size=(5,10)),sg.T('分关机'),],
     [sg.T('剩余时间',key='_LB_')],
     [sg.B("隐藏"),sg.B("退出")]
             ]
@@ -63,8 +66,8 @@ while True:
         lefthour-=1
 
     window['_LB_'].update(f'剩余{lefthour}小时 {leftmin}分钟')
-    if lefthour<=0 and leftmin<=0 and sw.duration>60:
-        os.system("shutdown /s /t 60")
+    if lefthour<=0 and leftmin<=0 and sw.duration>120:
+        os.system("shutdown /s /t 120")
         break
 tray.close()            # optional but without a close, the icon may "linger" until moused over
 window.close()
